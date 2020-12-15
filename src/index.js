@@ -46,12 +46,13 @@ app.post("/api/student", (req, res) => {
     let newId = maxId + 1;
     maxId = newId;
     const newStudent = {
-      newId,
+      id: newId,
       name,
-      currentClass,
+      currentClass: Number(currentClass),
       division,
     };
     studentArray.push(newStudent);
+    console.log(studentArray);
     res.send({ id: newId });
   }
 });
