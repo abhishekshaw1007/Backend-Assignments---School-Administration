@@ -60,8 +60,10 @@ app.post("/api/student", (req, res) => {
 app.put("/api/student/:id", (req, res) => {
   const idToUpdate = req.params.id;
   const { name, currentClass, division } = req.body;
-  const matchedIndex = studentArray.findIndex((s) => s.id == idToUpdate);
-  if (matchedIndex == -1) {
+  const matchedIndex = studentArray.findIndex(
+    (s) => s.id == Number(idToUpdate)
+  );
+  if (matchedIndex === -1) {
     res.sendStatus(400);
   } else {
     if (!isNullOrUndefined(name)) {
@@ -77,6 +79,19 @@ app.put("/api/student/:id", (req, res) => {
     res.sendStatus(200);
   }
   console.log(studentArray[idToUpdate]);
+});
+
+app.delete("/api/student/:id", (req, res) => {
+  const idToUpdate = req.params.id;
+  const matchedIndex = studentArray.findIndex(
+    (s) => s.id === Number(idToUpdate)
+  );
+  if (matchedIndex === -1) {
+    res.sendStatus(404);
+  } else {
+    studentArray.splice(matchedIndex, 1);
+    res.sendStatus(200);
+  }
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
