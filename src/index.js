@@ -68,17 +68,20 @@ app.put("/api/student/:id", (req, res) => {
   } else {
     if (!isNullOrUndefined(name)) {
       studentArray[idToUpdate].name = name;
-      console.log(studentArray);
+      res.sendStatus(200);
+      // console.log(studentArray);
     }
     if (!isNullOrUndefined(currentClass)) {
       studentArray[idToUpdate].currentClass = Number(currentClass);
+      res.sendStatus(200);
     }
     if (!isNullOrUndefined(division)) {
       studentArray[idToUpdate].division = division;
+      res.sendStatus(200);
     }
-    res.sendStatus(200);
+    res.sendStatus(400);
   }
-  console.log(studentArray[idToUpdate]);
+  // console.log(studentArray[idToUpdate]);
 });
 
 app.delete("/api/student/:id", (req, res) => {
