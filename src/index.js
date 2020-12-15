@@ -69,14 +69,14 @@ app.put("/api/student/:id", (req, res) => {
       console.log(studentArray);
     }
     if (!isNullOrUndefined(currentClass)) {
-      studentArray[idToUpdate].currentClass = currentClass;
+      studentArray[idToUpdate].currentClass = Number(currentClass);
     }
     if (!isNullOrUndefined(division)) {
       studentArray[idToUpdate].division = division;
     }
     res.sendStatus(200);
   }
-  // console.log(nameToUpdate.name);
+  console.log(studentArray[idToUpdate]);
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
