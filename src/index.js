@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const port = 8080;
-const studentArray = require("./InitialData");
-const maxId = studentArray.length;
+let studentArray = require("./InitialData");
+let maxId = studentArray.length;
 app.use(express.urlencoded());
 
 // Parse JSON bodies (as sent by API clients)
@@ -43,7 +43,7 @@ app.post("/api/student", (req, res) => {
   ) {
     res.sendStatus(400);
   } else {
-    const newId = maxId + 1;
+    let newId = maxId + 1;
     maxId = newId;
     const newStudent = {
       newId,
