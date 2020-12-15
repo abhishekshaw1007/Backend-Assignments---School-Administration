@@ -61,27 +61,34 @@ app.put("/api/student/:id", (req, res) => {
   const idToUpdate = req.params.id;
   const { name, currentClass, division } = req.body;
   const matchedIndex = studentArray.findIndex(
-    (s) => s.id == Number(idToUpdate)
+    (s) => s.id === Number(idToUpdate)
   );
   if (matchedIndex === -1) {
     res.sendStatus(400);
   } else {
-    if (!isNullOrUndefined(name)) {
-      studentArray[idToUpdate].name = name;
-      res.sendStatus(200);
-      // console.log(studentArray);
+    if (
+      isNullOrUndefined(name) &&
+      isNullOrUndefined(currentClass) &&
+      isNullOrUndefined(division)
+    ) {
+      res.sendStatus(400);
+    } else {
+      if (!isNullOrUndefined(name)) {
+        studentArray[idToUpdate].name = name;
+        res.sendStatus(200);
+        // console.log(studentArray);
+      }
+      if (!isNullOrUndefined(currentClass)) {
+        studentArray[idToUpdate].currentClass = Number(currentClass);
+        res.sendStatus(200);
+      }
+      if (!isNullOrUndefined(division)) {
+        studentArray[idToUpdate].division = division;
+        res.sendStatus(200);
+      }
     }
-    if (!isNullOrUndefined(currentClass)) {
-      studentArray[idToUpdate].currentClass = Number(currentClass);
-      res.sendStatus(200);
-    }
-    if (!isNullOrUndefined(division)) {
-      studentArray[idToUpdate].division = division;
-      res.sendStatus(200);
-    }
-    res.sendStatus(400);
+    console.log(studentArray[idToUpdate]);
   }
-  // console.log(studentArray[idToUpdate]);
 });
 
 app.delete("/api/student/:id", (req, res) => {
