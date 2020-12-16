@@ -86,8 +86,9 @@ app.put("/api/student/:id", (req, res) => {
         studentArray[idToUpdate].division = division;
         res.sendStatus(200);
       }
+      res.sendStatus(400);
     }
-    console.log(studentArray[idToUpdate]);
+    // console.log(studentArray[idToUpdate]);
   }
 });
 
