@@ -63,6 +63,9 @@ app.put("/api/student/:id", (req, res) => {
   const matchedIndex = studentArray.findIndex(
     (s) => s.id === Number(idToUpdate)
   );
+  // console.log(matchedIndex);
+  // console.log(studentArray[matchedIndex]);
+
   if (matchedIndex === -1) {
     res.sendStatus(400);
   } else {
@@ -74,21 +77,21 @@ app.put("/api/student/:id", (req, res) => {
       res.sendStatus(400);
     } else {
       if (!isNullOrUndefined(name)) {
-        studentArray[idToUpdate].name = name;
-        res.sendStatus(200);
+        studentArray[matchedIndex].name = name;
+        // res.sendStatus(200);
         // console.log(studentArray);
       }
       if (!isNullOrUndefined(currentClass)) {
-        studentArray[idToUpdate].currentClass = Number(currentClass);
-        res.sendStatus(200);
+        studentArray[matchedIndex].currentClass = Number(currentClass);
+        // res.sendStatus(200);
       }
       if (!isNullOrUndefined(division)) {
-        studentArray[idToUpdate].division = division;
-        res.sendStatus(200);
+        studentArray[matchedIndex].division = division;
+        // res.sendStatus(200);
       }
-      res.sendStatus(400);
+      res.sendStatus(200);
     }
-    // console.log(studentArray[idToUpdate]);
+    // console.log(studentArray[matchedIndex]);
   }
 });
 
